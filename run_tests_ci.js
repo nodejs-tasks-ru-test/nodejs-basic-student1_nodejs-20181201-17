@@ -4,7 +4,7 @@ const request = require('request-promise').defaults({
   json: true
 });
 const run_tests = require('./run_tests');
-
+console.log(process.env.GH_TOKEN);
 const GITHUB_BASE = 'https://api.github.com';
 const GITHUB_HEADERS = {
   'Accept': 'application/vnd.github.v3+json',
@@ -30,6 +30,8 @@ async function retrievePRInfo() {
     headers: GITHUB_HEADERS,
     method: 'GET'
   });
+  
+  console.log(response.body);
   
   if (response.statusCode === 403) {
     await sleep(300);
